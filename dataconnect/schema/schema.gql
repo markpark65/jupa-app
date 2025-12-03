@@ -1,0 +1,45 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type PodcastGenerationRequest @table {
+  user: User!
+  topic: String!
+  requestedLengthMinutes: Int!
+  tone: String!
+  createdAt: Timestamp!
+  status: String!
+  keywords: String
+  description: String
+}
+
+type PodcastEpisode @table {
+  podcastGenerationRequest: PodcastGenerationRequest!
+  user: User!
+  title: String!
+  audioUrl: String!
+  durationSeconds: Int!
+  createdAt: Timestamp!
+  description: String
+  thumbnailUrl: String
+  scriptText: String
+}
+
+type AIConfiguration @table {
+  modelName: String!
+  voiceId: String!
+  createdAt: Timestamp!
+  voiceName: String
+  description: String
+}
+
+type Feedback @table {
+  user: User!
+  podcastEpisode: PodcastEpisode!
+  rating: Int!
+  createdAt: Timestamp!
+  comments: String
+}
